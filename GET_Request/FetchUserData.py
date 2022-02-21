@@ -9,7 +9,9 @@ url = "https://reqres.in/api/users?page=2"
 
 """Send Get Request """
 response = requests.get(url)
-print(response)
+print(f"Response code is {response.status_code}")
+assert response.status_code == 200
+assert response.status_code != 404
 
 """Display Response Content"""
 # print(response.content)
