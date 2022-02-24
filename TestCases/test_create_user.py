@@ -9,7 +9,7 @@ url = "https://reqres.in/api/users"
 
 def test_create_new_user():
     """Read Input Json file."""
-    file = open('C:\Users\nikita.radzisheuski\Desktop\page_object\page_object_testing\CreateUser.json', 'r')
+    file = open('C:\\Users\\nikita.radzisheuski\\Desktop\\page_object\\page_object_testing\\GET_request\\CreateUser.json', 'r')
     json_input = file.read()
     request_json = json.loads(json_input)
     """Make post request with Json Input body."""
@@ -23,5 +23,15 @@ def test_create_new_user():
     """Parse response to Json format."""
     response_json = json.loads(response.text)
     """Pick id using Json path."""
+    id = jsonpath.jsonpath(response_json, "id")
+    print(id[0])
+
+
+def test_create_other_user():
+    file = open('C:\\Users\\nikita.radzisheuski\\Desktop\\page_object\\page_object_testing\\GET_request\\CreateUser.json', 'r')
+    json_input = file.read()
+    request_json = json.loads(json_input)
+    response = requests.post(url, request_json)
+    response_json = json.loads(response.text)
     id = jsonpath.jsonpath(response_json, "id")
     print(id[0])
